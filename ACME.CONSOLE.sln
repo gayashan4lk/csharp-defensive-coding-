@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACME.CONSOLE", "ACME.CONSOL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACME.BL", "ACME.BL\ACME.BL.csproj", "{A430D87D-78E5-4753-9EA4-5B32B260FB0B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACME.BL.Test", "ACME.BL.Test\ACME.BL.Test.csproj", "{BADC82DF-B3AD-4E81-A9E6-8AAE265DE043}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{A430D87D-78E5-4753-9EA4-5B32B260FB0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A430D87D-78E5-4753-9EA4-5B32B260FB0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A430D87D-78E5-4753-9EA4-5B32B260FB0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BADC82DF-B3AD-4E81-A9E6-8AAE265DE043}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BADC82DF-B3AD-4E81-A9E6-8AAE265DE043}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BADC82DF-B3AD-4E81-A9E6-8AAE265DE043}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BADC82DF-B3AD-4E81-A9E6-8AAE265DE043}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
