@@ -9,7 +9,14 @@ namespace ACME.WEB.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            var p = new Product(150, 80);
+            var myProductVm = new ProductViewModel()
+            {
+                Id = p.ProductId,
+                Price = p.Price.ToString(),
+                Cost = p.Cost.ToString(),
+            };
+            return View(myProductVm);
         }
 
         public IActionResult Calculate(ProductViewModel productVm)
@@ -30,6 +37,18 @@ namespace ACME.WEB.Controllers
             }
 
             return View();
+        }
+
+        public IActionResult PriceUpdate()
+        {
+            var productVm = new ProductViewModel();
+            productVm.Price = 399.ToString();
+            productVm.Cost = 250.ToString();
+            productVm.CreatedDate = DateTime.Now;
+
+            ViewBag.IsAcceptable = false;
+
+            return View(productVm);
         }
     }
 }

@@ -1,0 +1,26 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model ACME.WEB.Models.ProductViewModel
+
+@{
+}
+
+<h1>Price Update</h1>
+
+<hr />
+
+<div>
+    <div>
+        <form>
+            <div>
+                <label asp-for="Cost" class="col-md-3 control-label"></label>
+                <div>
+                    <input asp-for="Cost" class="form-control" />
+                    <span asp-validation-for="Cost" class="text-danger"></span>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
