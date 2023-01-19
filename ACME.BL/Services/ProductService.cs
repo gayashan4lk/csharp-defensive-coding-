@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ACME.BL.Services
 {
-    internal class ProductService
+    public class ProductService
     {
         public static decimal calculateMargin(Product product)
         {

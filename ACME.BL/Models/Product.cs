@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ACME.BL.Models
 {
-    internal class Product
+    public class Product
     {
         public int ProductId { get; set; }
         public decimal Price { get; set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ACME.BL.Services
 {
-    internal class FileService
+    public class FileService
     {
         public void SavePrice(int productId, decimal cost, decimal price, string category, string reason)
         {
