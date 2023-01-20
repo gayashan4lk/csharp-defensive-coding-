@@ -50,5 +50,17 @@ namespace ACME.WEB.Controllers
 
             return View(productVm);
         }
+
+        public IActionResult ProductInfo()
+        {
+            var productVm = new ProductViewModel();
+            productVm.Price = 399.ToString();
+            productVm.Cost = 250.ToString();
+            productVm.CreatedDate = DateTime.Now;
+            productVm.Name = "Test Product";
+            productVm.Category = "Test Category";
+
+            return View(productVm);
+        }
     }
 }
