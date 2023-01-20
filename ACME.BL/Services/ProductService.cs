@@ -11,8 +11,17 @@ namespace ACME.BL.Services
     {
         public static decimal calculateMargin(Product product)
         {
-            decimal margin = (product.Price - product.Cost) / product.Price * 100M;
+            decimal margin = 0;
+            try
+            {
+                margin = (product.Price - product.Cost) / product.Price * 100M;
+            } 
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine(ex.Message);
+            }
             return decimal.Round(margin, 2, MidpointRounding.AwayFromZero);
+
         }
     }
 }
