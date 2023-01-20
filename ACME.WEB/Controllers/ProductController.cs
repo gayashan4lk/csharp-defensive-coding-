@@ -7,18 +7,14 @@ namespace ACME.WEB.Controllers
 {
     public class ProductController : Controller
     {
+        // GET action: Product
         public IActionResult Index()
         {
-            var p = new Product(150, 80);
-            var myProductVm = new ProductViewModel()
-            {
-                Id = p.ProductId,
-                Price = p.Price.ToString(),
-                Cost = p.Cost.ToString(),
-            };
-            return View(myProductVm);
+            return View();
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Calculate(ProductViewModel productVm)
         {
             var priceInput = productVm.Price;
@@ -27,7 +23,7 @@ namespace ACME.WEB.Controllers
             var priceSuccess = decimal.TryParse(priceInput, out decimal price);
             var costSuccess = decimal.TryParse(costInput, out decimal cost);
 
-            if (!priceSuccess && !costSuccess)
+            if (priceSuccess && costSuccess)
             {
                 var product = new Product(price, cost);
                 var calculatedMargine = ProductService.calculateMargin(product);
@@ -36,23 +32,41 @@ namespace ACME.WEB.Controllers
                 ViewBag.IsAcceptable = calculatedMargine >= 40;
             }
 
-            return View();
+            return View(nameof(PriceUpdate),productVm);
         }
 
+        // GET action
+        // When navigating to the page.
         public IActionResult PriceUpdate()
         {
-            var productVm = new ProductViewModel();
-            productVm.Price = 399.ToString();
-            productVm.Cost = 250.ToString();
-            productVm.CreatedDate = DateTime.Now;
-
+            // Create a sample product
+            var productVm = new ProductViewModel()
+            {
+                Id = Guid.NewGuid(),
+                Price = "399",
+                Cost = "199",
+                Name = "Bicycle",
+                Category = "Transport",
+            };
+            
             ViewBag.IsAcceptable = false;
 
             return View(productVm);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult PriceUpdate(ProductViewModel productVm)
+        {
+            
+            return View(nameof(Index));
+        }
+
+        // Get Action
+        // When navigate to page ProductInfo
         public IActionResult ProductInfo()
         {
+            // Create a new product
             var productVm = new ProductViewModel();
             productVm.Price = 399.ToString();
             productVm.Cost = 250.ToString();
