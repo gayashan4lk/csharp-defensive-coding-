@@ -23,10 +23,16 @@ namespace ACME.WEB.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Calculate(ProductViewModel productVm)
         {
-            var calculatedMargine = service.CalculateMargin(productVm.Price, productVm.Cost);
-
-            ViewBag.CalculatedMargin = calculatedMargine;
-            ViewBag.IsAcceptable = calculatedMargine >= 40;
+            try
+            {
+                var calculatedMargine = service.CalculateMargin(productVm.Price, productVm.Cost);
+                ViewBag.CalculatedMargin = calculatedMargine;
+                ViewBag.IsAcceptable = calculatedMargine >= 40;
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine(ex.Message);
+            }
 
             return View(nameof(PriceUpdate),productVm);
         }
