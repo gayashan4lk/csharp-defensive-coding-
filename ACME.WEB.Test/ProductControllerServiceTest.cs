@@ -33,9 +33,10 @@ namespace ACME.WEB.Test
             var costInput = "NaN";
 
             // Act
-            var ex = Assert.Throws<ArgumentException>(() => service.CalculateMargin(priceInput, costInput));
+            Action act = () => service.CalculateMargin(priceInput, costInput);
 
             // Assert
+            var ex = Assert.Throws<ArgumentException>(act);
             Assert.Equal("The value must be a number", ex.Message);
         }
 
@@ -47,9 +48,10 @@ namespace ACME.WEB.Test
             var costInput = "99";
 
             // Act
-            var ex = Assert.Throws<ArgumentException>(() => service.CalculateMargin(priceInput, costInput));
+            Action act = () => service.CalculateMargin(priceInput, costInput);
 
             // Assert
+            var ex = Assert.Throws<ArgumentException>(act);
             Assert.Equal("The value must be a number", ex.Message);
         }
 
@@ -61,9 +63,10 @@ namespace ACME.WEB.Test
             var costInput = "NaN";
 
             // Act
-            var ex = Assert.Throws<ArgumentException>(() => service.CalculateMargin(priceInput, costInput));
+            Action act = () => service.CalculateMargin(priceInput, costInput);
 
             // Assert
+            var ex = Assert.Throws<ArgumentException>(act);
             Assert.Equal("The value must be a number", ex.Message);
         }
 
@@ -75,9 +78,10 @@ namespace ACME.WEB.Test
             var costIpnut = "99";
 
             // Act
-            var ex = Assert.Throws<ArgumentException>(() => service.CalculateMargin(priceInput, costIpnut));
+            Action act = () => service.CalculateMargin(priceInput, costIpnut);
 
             // Assert
+            var ex = Assert.Throws<ArgumentException>(act);
             Assert.Equal("Value must be equal or greater than zero.", ex.Message);
         }
 
@@ -89,12 +93,12 @@ namespace ACME.WEB.Test
             var costIpnut = "-32";
 
             // Act
-            var ex = Assert.Throws<ArgumentException>(() => service.CalculateMargin(priceInput, costIpnut));
+            Action act = () => service.CalculateMargin(priceInput, costIpnut);
+
 
             // Assert
+            var ex = Assert.Throws<ArgumentException>(act);
             Assert.Equal("Value must be equal or greater than zero.", ex.Message);
         }
-
-
     }
 }
