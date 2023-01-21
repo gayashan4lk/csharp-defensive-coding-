@@ -11,7 +11,7 @@ namespace ACME.WEB.ControllerServices
             if (!priceSuccess) throw new ArgumentException("The value must be a number");
 
             var costSuccess = decimal.TryParse(costInput, out decimal cost);
-            if (costSuccess) throw new ArgumentException("The value must be a number");
+            if (!costSuccess) throw new ArgumentException("The value must be a number");
 
             if (price < 0 || cost < 0) throw new ArgumentException("Value must be equal or greater than zero.");
 
