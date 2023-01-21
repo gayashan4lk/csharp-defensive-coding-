@@ -11,22 +11,12 @@ namespace ACME.BL.Services
     {
         public static decimal calculateMargin(Product product)
         {
-            decimal margin = 0;
-            try
-            {
-                if(product.Cost < 1) return margin = 100M;
-                
-                margin = (product.Price - product.Cost) / product.Price * 100M;
+            if(product.Price == 0) throw new DivideByZeroException("Price cannot be zero.");
 
-            } 
-            catch (Exception ex)
-            {
-                Console.Error.WriteLine(ex.Message);
-            }
+            if (product.Cost < 1) return 100M;
 
-            //return decimal.Round(margin, 2, MidpointRounding.AwayFromZero);
+            var margin = (product.Price - product.Cost) / product.Price * 100M;
             return Math.Round(margin, 1);
-
         }
     }
 }

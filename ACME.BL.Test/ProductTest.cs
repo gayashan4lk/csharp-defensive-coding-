@@ -88,5 +88,21 @@ namespace ACME.BL.Test
             // Assert
             Assert.Equal(expected, actual);
         }
+
+        [Fact]
+        public void CaculateMargin_WhenInvalidPriceIsZero_ShouldReturnException()
+        {
+            // Arrange
+            var product = new Product(0, 99);
+
+
+            // Act
+            Action act = () => ProductService.calculateMargin(product);
+
+            //Asert
+            var ex = Assert.Throws<DivideByZeroException>(act);
+            Assert.Equal("Price cannot be zero.", ex.Message);
+
+        }
     }
 }
