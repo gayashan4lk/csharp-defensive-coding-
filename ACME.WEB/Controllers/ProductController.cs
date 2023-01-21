@@ -1,5 +1,6 @@
 ﻿using ACME.BL.Models;
 using ACME.BL.Services;
+using ACME.WEB.ControllerServices;
 using ACME.WEB.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,6 +8,11 @@ namespace ACME.WEB.Controllers
 {
     public class ProductController : Controller
     {
+        ProductControllerService service;
+        public ProductController()
+        {
+            service = new ProductControllerService();
+        }
         // GET action: Product
         public IActionResult Index()
         {
@@ -17,19 +23,7 @@ namespace ACME.WEB.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Calculate(ProductViewModel productVm)
         {
-            var priceInput = productVm.Price;
-            var costInput = productVm.Cost;
-
-            var priceSuccess = decimal.TryParse(priceInput, out decimal price);
-            if(!priceSuccess) throw new ArgumentException("The value must be a number");
-            
-            var costSuccess = decimal.TryParse(costInput, out decimal cost);
-            if (costSuccess) throw new ArgumentException("The value must be a number");
-
-            if (price < 0 || cost < 0) throw new ArgumentException("Value must be equal or greater than zero.");
-
-            var product = new Product(price, cost);
-            var calculatedMargine = ProductService.calculateMargin(product);
+            var calculatedMargine = service.CalculateMargin(productVm.Price, productVm.Cost);
 
             ViewBag.CalculatedMargin = calculatedMargine;
             ViewBag.IsAcceptable = calculatedMargine >= 40;
