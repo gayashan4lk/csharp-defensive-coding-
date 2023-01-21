@@ -21,16 +21,18 @@ namespace ACME.WEB.Controllers
             var costInput = productVm.Cost;
 
             var priceSuccess = decimal.TryParse(priceInput, out decimal price);
+            if(!priceSuccess) throw new ArgumentException("The value must be a number");
+            
             var costSuccess = decimal.TryParse(costInput, out decimal cost);
+            if (costSuccess) throw new ArgumentException("The value must be a number");
 
-            if (priceSuccess && costSuccess)
-            {
-                var product = new Product(price, cost);
-                var calculatedMargine = ProductService.calculateMargin(product);
+            if (price < 0 || cost < 0) throw new ArgumentException("Value must be equal or greater than zero.");
 
-                ViewBag.CalculatedMargin = calculatedMargine;
-                ViewBag.IsAcceptable = calculatedMargine >= 40;
-            }
+            var product = new Product(price, cost);
+            var calculatedMargine = ProductService.calculateMargin(product);
+
+            ViewBag.CalculatedMargin = calculatedMargine;
+            ViewBag.IsAcceptable = calculatedMargine >= 40;
 
             return View(nameof(PriceUpdate),productVm);
         }
