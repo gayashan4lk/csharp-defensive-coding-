@@ -20,11 +20,11 @@ namespace ACME.BL.Test
         }
 
         [Fact]
-        public void CaculateMargin_WhenValidCostOneThirdOfPrice_ShouldRoundTo66()
+        public void CaculateMargin_WhenValidCostISOneThirdOfPrice_ShouldReturn66Point7()
         {
             // Arrange
             var product = new Product(150, 50);
-            decimal expected = 66;
+            decimal expected = 66.7M;
 
             // Act
             decimal actual = ProductService.calculateMargin(product);
@@ -34,7 +34,7 @@ namespace ACME.BL.Test
         }
 
         [Fact]
-        public void CaculateMargin_WhenValidCostEqualToPrice_ShouldReturn0()
+        public void CaculateMargin_WhenValidCostISEqualToPrice_ShouldReturn0()
         {
             // Arrange
             var product = new Product(200, 200);
@@ -62,11 +62,25 @@ namespace ACME.BL.Test
         }
 
         [Fact]
-        public void CaculateMargin_WhenValidCostLessThan1_ShouldReturn100()
+        public void CaculateMargin_WhenValidCostISLessThan1_ShouldReturn100()
         {
             // Arrange
             var product = new Product(100, 0.99M);
             decimal expected = 100M;
+
+            // Act
+            decimal actual = ProductService.calculateMargin(product);
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void CaculateMargin_WhenValid_ShouldReturn33point3()
+        {
+            // Arrange
+            var product = new Product(30, 20);
+            decimal expected = 33.3M;
 
             // Act
             decimal actual = ProductService.calculateMargin(product);
